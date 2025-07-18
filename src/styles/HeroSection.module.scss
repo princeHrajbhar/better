@@ -1,0 +1,48 @@
+.hero {
+  background: linear-gradient(to bottom, #00182b 0%, #002940 100%);
+  color: white;
+  padding: 100px 20px;
+  text-align: center;
+}
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.heading {
+  font-size: 48px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.subheading {
+  font-size: 20px;
+  margin-bottom: 30px;
+}
+
+.buttonGroup {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.primaryBtn {
+  background-color: #00cc66;
+  color: white;
+  padding: 14px 24px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.secondaryBtn {
+  background-color: transparent;
+  color: white;
+  border: 2px solid white;
+  padding: 14px 24px;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+}
