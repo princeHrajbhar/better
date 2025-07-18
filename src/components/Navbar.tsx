@@ -2,8 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import styles from '@/styles/Navbar.module.scss';
-import { FaPhoneAlt, FaChevronRight } from 'react-icons/fa';
-
+import { FaPhoneAlt, FaChevronRight, FaChevronDown, FaBars, FaTimes } from 'react-icons/fa';
 
 type MenuItem = {
   title: string;
@@ -36,15 +35,17 @@ const menuItems: MenuItem[] = [
 export default function Navbar() {
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
   const [hoveredOption, setHoveredOption] = useState<string | null>(null);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [expandedMobileMenu, setExpandedMobileMenu] = useState<string | null>(null);
   const menuRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
 
   // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (activeMenu) {
         const menuRef = menuRefs.current[activeMenu];
-        // Check if the click is outside the menu item and its dropdown
         if (menuRef && !menuRef.contains(event.target as Node)) {
           setActiveMenu(null);
         }
@@ -67,79 +68,158 @@ export default function Navbar() {
       clearTimeout(timeoutRef.current);
     }
     timeoutRef.current = setTimeout(() => {
-      // Only close if the mouse is truly outside the menu item and its dropdown
       if (menuRefs.current[title] &&
           !menuRefs.current[title]?.contains(document.activeElement) &&
-          !menuRefs.current[title]?.matches(':hover')) { // Check if the element itself is not hovered
+          !menuRefs.current[title]?.matches(':hover')) {
         setActiveMenu(null);
       }
     }, 100);
   };
 
-  return (
-    <nav className={styles.navbar}>
-      {/* Left Section */}
-      <div className={styles.leftSection}>
-        <div className={styles.logo}>MyCompany</div>
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+    if (!isMobileMenuOpen) {
+      setExpandedMobileMenu(null);
+    }
+  };
 
-        <div className={styles.menu}>
+  const toggleMobileSubmenu = (title: string) => {
+    setExpandedMobileMenu(expandedMobileMenu === title ? null : title);
+  };
+
+  return (
+    <>
+      <nav className={styles.navbar}>
+        {/* Left Section */}
+        <div className={styles.leftSection}>
+          <div className={styles.logo}>MyCompany</div>
+
+          <div className={styles.desktopMenu}>
+            {menuItems.map((item) => (
+              <div
+                key={item.title}
+                className={styles.menuItem}
+                ref={setRef(item.title)}
+                onMouseEnter={() => {
+                  if (timeoutRef.current) {
+                    clearTimeout(timeoutRef.current);
+                  }
+                  setActiveMenu(item.title);
+                }}
+                onMouseLeave={() => handleMouseLeave(item.title)}
+              >
+                <button className={styles.menuButton}>{item.title}</button>
+                {activeMenu === item.title && (
+                  <div
+                    className={styles.dropdown}
+                    onMouseEnter={() => {
+                      if (timeoutRef.current) {
+                        clearTimeout(timeoutRef.current);
+                      }
+                      setActiveMenu(item.title);
+                    }}
+                    onMouseLeave={() => handleMouseLeave(item.title)}
+                  >
+                    {item.content.map((option) => (
+                      <a
+                        key={option}
+                        href="#"
+                        className={styles.dropdownItem}
+                        onMouseEnter={() => setHoveredOption(option)}
+                        onMouseLeave={() => setHoveredOption(null)}
+                      >
+                        <span>{option}</span>
+                        {hoveredOption === option && (
+                          <div className={styles.arrowIcon}>
+                            <FaChevronRight />
+                          </div>
+                        )}
+                      </a>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Right Section */}
+        <div className={styles.rightSection}>
+          <div className={styles.phoneIcon}>
+            <FaPhoneAlt />
+          </div>
+          <button className={styles.signIn}>Sign In</button>
+          <button 
+            className={styles.mobileMenuToggle} 
+            onClick={toggleMobileMenu}
+            aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+          >
+            {isMobileMenuOpen ? <FaTimes /> : <FaBars />}
+          </button>
+        </div>
+      </nav>
+
+      {/* Mobile Menu */}
+      <div 
+        ref={mobileMenuRef}
+        className={`${styles.mobileMenu} ${isMobileMenuOpen ? styles.open : ''}`}
+      >
+        <div className={styles.mobileMenuHeader}>
+          <div className={styles.logo}>MyCompany</div>
+          <button 
+            className={styles.mobileMenuClose}
+            onClick={toggleMobileMenu}
+            aria-label="Close menu"
+          >
+            <FaTimes />
+          </button>
+        </div>
+        
+        {/* <div className={styles.mobileMenuMainButton} onClick={toggleMobileMenu}>
+          <div className={styles.mainMenuButton}>
+            <span>Main Menu</span>
+            <FaChevronDown className={styles.downArrow} />
+          </div>
+        </div> */}
+        
+        <div className={styles.mobileMenuItems}>
           {menuItems.map((item) => (
-            <div
-              key={item.title}
-              className={styles.menuItem}
-              ref={setRef(item.title)}
-              onMouseEnter={() => {
-                if (timeoutRef.current) {
-                  clearTimeout(timeoutRef.current);
-                }
-                setActiveMenu(item.title);
-              }}
-              onMouseLeave={() => handleMouseLeave(item.title)}
-            >
-              <button className={styles.menuButton}>{item.title}</button>
-              {activeMenu === item.title && (
-                <div
-                  className={styles.dropdown}
-                  // Keep dropdown open if mouse enters the dropdown itself
-                  onMouseEnter={() => {
-                    if (timeoutRef.current) {
-                      clearTimeout(timeoutRef.current);
-                    }
-                    setActiveMenu(item.title);
-                  }}
-                  onMouseLeave={() => handleMouseLeave(item.title)}
-                >
+            <div key={item.title} className={styles.mobileMenuItem}>
+              <button
+                className={styles.mobileMenuButton}
+                onClick={() => toggleMobileSubmenu(item.title)}
+              >
+                <span>{item.title}</span>
+                <FaChevronDown className={`${styles.downArrow} ${expandedMobileMenu === item.title ? styles.rotated : ''}`} />
+              </button>
+              
+              {expandedMobileMenu === item.title && (
+                <div className={styles.mobileDropdown}>
                   {item.content.map((option) => (
                     <a
                       key={option}
                       href="#"
-                      className={styles.dropdownItem}
-                      onMouseEnter={() => setHoveredOption(option)}
-                      onMouseLeave={() => setHoveredOption(null)}
+                      className={styles.mobileDropdownItem}
+                      onClick={() => setIsMobileMenuOpen(false)}
                     >
-                      <span>{option}</span>
-                      {hoveredOption === option && (
-                        // Corrected: Wrap FaChevronRight in a div and apply className to the div
-                        <div className={styles.arrowIcon}>
-                          <FaChevronRight />
-                        </div>
-                      )}
+                      {option}
                     </a>
                   ))}
                 </div>
               )}
             </div>
           ))}
+          
+          <div className={styles.mobileSignIn}>
+            <button 
+              className={styles.signIn}
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Sign In
+            </button>
+          </div>
         </div>
       </div>
-
-      {/* Right Section */}
-      <div className={styles.rightSection}>
-        <div className={styles.phoneIcon}>
-          <FaPhoneAlt />
-        </div>
-        <button className={styles.signIn}>Sign In</button>
-      </div>
-    </nav>
+    </>
   );
 }
