@@ -16,7 +16,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Navbar />
-        <main style={{ paddingTop: '80px' }}>{children}</main> {/* 👈 Push content below navbar */}
+        <main style={{ paddingTop: '0px' }}>{children}</main> {/* 👈 Push content below navbar */}
       </body>
     </html>
   );

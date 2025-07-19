@@ -1,18 +1,65 @@
-import styles from "@/styles/HeroSection.module.scss";
+// components/HomeLandingPage.tsx
+import Image from 'next/image';
+import styles from '@/styles/HeroSection.module.scss';
+import { FaClock, FaCheckCircle } from 'react-icons/fa';
 
-export default function HeroSection() {
+export default function HomeLandingPage() {
   return (
-    <section className={styles.hero}>
-      <div className={styles.container}>
-        <h1 className={styles.heading}>Home is worth it.</h1>
-        <p className={styles.subheading}>
-          Discover your home-buying budget, apply for a mortgage, and search real estate with Better — all in one place.
-        </p>
-        <div className={styles.buttonGroup}>
-          <button className={styles.primaryBtn}>Get started</button>
-          <button className={styles.secondaryBtn}>Mortgage calculator</button>
+    <div className={styles.container}>
+      <div className={styles.backgroundGradient}></div>
+      
+      <div className={styles.content}>
+        <div className={styles.textContainer}>
+          {/* "The first" text */}
+          <p className={styles.subtitle}>
+            The first
+          </p>
+          
+          {/* Main Heading - Now all on one line */}
+          <h1 className={styles.heading}>
+            <span className={styles.whiteText}>AI-powered</span>
+            <span className={styles.gradientText}> Mortgage</span>
+          </h1>
+          
+          {/* Description */}
+          <p className={styles.description}>
+            Our tech unlocks lower rates, higher chances of approval,
+            and a lightning‑fast process from approval to closing. Over $100 billion funded.
+          </p>
+          
+          {/* Button - No gradient */}
+          <button className={styles.approvalButton}>
+            Start my pre-approval
+          </button>
+          
+          {/* Info with Icons - Fixed layout */}
+          <div className={styles.infoContainer}>
+            <div className={styles.infoItem}>
+              <FaClock className={styles.icon} />
+              <span>3 min | No hard credit check</span>
+            </div>
+        
+          </div>
+          
+          {/* Image */}
+          <div className={styles.imageWrapper}>
+           <Image
+  src="/ai-powered-fico.webp"
+  alt="AI-powered Mortgage"
+  width={0}      // Not needed if using class
+  height={0}     // Not needed if using class
+  className={styles.image}
+  unoptimized    // Optional: ensures real image size is loaded
+/>
+
+          </div>
         </div>
       </div>
-    </section>
+      
+      {/* Decorative Elements */}
+      <div className={styles.decorCircle1}></div>
+      <div className={styles.decorCircle2}></div>
+      <div className={styles.decorCircle3}></div>
+    </div>
   );
 }
