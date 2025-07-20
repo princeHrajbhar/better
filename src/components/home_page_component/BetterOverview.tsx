@@ -1,6 +1,6 @@
 // components/FooterSection.tsx
 import React from 'react';
-import styles from '@/styles/BetterOverview.module.scss'; // Ensure this path is correct if it's not components/FooterSection.module.scss
+import styles from '@/styles/home_styles/BetterOverview.module.scss'; // Ensure this path is correct if it's not components/FooterSection.module.scss
 
 interface ColumnData {
   title: string;

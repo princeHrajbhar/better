@@ -2,7 +2,7 @@
 "use client";
 
 import { useState } from 'react';
-import styles from '@/styles/Stories.module.scss';
+import styles from '@/styles/home_styles/Stories.module.scss';
 
 export default function Home() {
   const [activeButton, setActiveButton] = useState<string | null>(null);

@@ -1,7 +1,7 @@
 // components/SimpleFooter.tsx
 import React from 'react';
 import { FaFacebookF, FaInstagram, FaLinkedinIn } from 'react-icons/fa';
-import styles from '@/styles/Footer.module.scss';
+import styles from '@/styles/home_styles/Footer.module.scss';
 
 const SimpleFooter: React.FC = () => {
   const beforeSeparator = `

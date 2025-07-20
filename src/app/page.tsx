@@ -1,8 +1,8 @@
-import BetterOverview from "@/components/BetterOverview";
-import Footer from "@/components/Footer";
-import HeroSection from "@/components/HeroSection";
-import QnA from "@/components/QnA";
-import Stories from "@/components/Stories";
+import BetterOverview from "@/components/home_page_component/BetterOverview";
+import Footer from "@/components/home_page_component/Footer";
+import HeroSection from "@/components/home_page_component/HeroSection";
+import QnA from "@/components/home_page_component/QnA";
+import Stories from "@/components/home_page_component/Stories";
 
 export default function Home() {
   return (

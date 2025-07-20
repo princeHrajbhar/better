@@ -1,6 +1,6 @@
 // components/HomeLandingPage.tsx
 import Image from 'next/image';
-import styles from '@/styles/HeroSection.module.scss';
+import styles from '@/styles/home_styles/HeroSection.module.scss';
 import { FaClock, FaCheckCircle } from 'react-icons/fa';
 
 export default function HomeLandingPage() {

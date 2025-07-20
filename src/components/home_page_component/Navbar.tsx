@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import styles from '@/styles/Navbar.module.scss';
+import styles from '@/styles/home_styles/Navbar.module.scss';
 import { FaPhoneAlt, FaChevronRight, FaChevronDown, FaBars, FaTimes } from 'react-icons/fa';
 
 type MenuItem = {
