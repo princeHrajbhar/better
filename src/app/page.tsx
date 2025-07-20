@@ -1,6 +1,6 @@
 import HeroSection from "@/components/HeroSection";
+import QnA from "@/components/QnA";
 import Stories from "@/components/Stories";
-import Image from "next/image";
 
 export default function Home() {
   return (
@@ -9,6 +9,7 @@ export default function Home() {
     
    <HeroSection/>
    <Stories/>
+   <QnA/>
    <HeroSection/>
    <HeroSection/>
    <HeroSection/>
