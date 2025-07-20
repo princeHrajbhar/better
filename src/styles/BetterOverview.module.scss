@@ -1,20 +1,26 @@
-// components/BetterOverview.module.scss
+// components/BetterOverview.module.scss OR components/FooterSection.module.scss
 
 .footerContainer {
   background-color: #f8f8f8;
-  padding: 60px 120px; /* Adjusted: Increased left/right padding for margins */
+  padding: 60px 40px;
   border-top: 1px solid #e0e0e0;
   font-family: Arial, sans-serif;
 }
 
 .columnsWrapper {
   display: grid;
-  grid-template-columns: 1.5fr repeat(3, 1fr);
-  gap: 30px;
-  max-width: 1400px; /* This still limits the overall content width */
-  margin: 0 auto;
-  // If you want tighter control over the total width of columns,
-  // ensure max-width here or on .footerContainer is the primary driver.
+  grid-template-columns: 1.5fr repeat(3, 1fr); // First column wider, others equal
+  gap: 30px; // Space between columns
+  max-width: 1400px; // Max width for the content itself
+  margin: 0 auto; // Center the columns wrapper
+
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(2, 1fr); // 2 columns on medium screens
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr; // Single column on small screens
+  }
 }
 
 .footerColumn {
@@ -28,19 +34,14 @@
   margin-bottom: 20px;
 }
 
-/* NEW: Style for the "Legal" text in the heading */
-.boldLegalText {
-  font-weight: bold;
-}
-
 .columnList {
-  list-style: none;
+  list-style: none; // Remove bullet points
   padding: 0;
   margin: 0;
 }
 
 .listItem {
-  margin-bottom: 10px;
+  margin-bottom: 10px; // Standard space between list items for non-first column
   font-size: 0.95rem;
   color: #555;
   line-height: 1.4;
@@ -50,43 +51,49 @@
   }
 }
 
+/* --- Styles for the First Column's New Format --- */
+
 .introDescriptionPara {
-  font-size: 1rem;
-  font-weight: 500;
+  font-size: 1rem; // The "Better is a family..." paragraph
   color: #333;
   line-height: 1.5;
-  margin-bottom: 25px;
+  margin-bottom: 25px; // Space after this intro paragraph
+  font-weight: 500; // Slightly bolder to act as intro
 }
 
-.listItemStacked {
-  margin-bottom: 20px;
+.listItemStacked { // New class for items in the first column that have heading + para
+  margin-bottom: 20px; // More space between these stacked heading/para blocks
   &:last-child {
     margin-bottom: 0;
   }
 }
 
 .companyHeadingWrapper {
-  font-size: 1.05rem; /* Increased size for the entire heading */
-  color: #333;
-  line-height: 1.2;
-  margin-bottom: 5px;
+  margin-bottom: 5px; // Space between heading and its paragraph
+  line-height: 1.2; // Tighter line height for headings
+  font-size: 1.05rem; // Increased size for the entire heading, adjust as needed
+  color: #333; // Default color for the heading part
+  font-weight: normal; // Ensure the default for the heading is not bold
 
-  span {
-    font-weight: normal; /* Default for spans inside, overridden by .greenBoldBetter */
+  span { // Target spans inside this wrapper for specific styling
+    font-weight: normal; // Reset default if inherited
   }
 }
 
 .greenBoldBetter {
-  color: #2ecc71;
-  font-weight: bold;
+  color: #2ecc71; /* Green color for the word "Better" */
+  font-weight: bold; /* Make the word "Better" bold */
 }
 
 .companyDescriptionPara {
-  font-size: 0.95rem;
+  font-size: 0.95rem; // Paragraph content size
   color: #555;
   line-height: 1.4;
-  margin: 0;
+  margin: 0; // Remove default paragraph margins
 }
+
+/* --- End First Column Specific Styles --- */
+
 
 .clickableLink {
   color: #555;
@@ -96,27 +103,5 @@
   &:hover {
     color: #333;
     text-decoration: underline;
-  }
-}
-
-/* Responsive Adjustments */
-@media (max-width: 1024px) {
-  .footerContainer {
-    padding: 40px 30px; /* Adjust padding for smaller screens */
-  }
-}
-
-@media (max-width: 768px) {
-  .footerContainer {
-    padding: 30px 20px; /* Further adjust for mobile */
-  }
-  .columnTitle {
-    margin-bottom: 15px;
-  }
-  .listItem {
-    margin-bottom: 8px;
-  }
-  .listItemStacked {
-    margin-bottom: 15px;
   }
 }
