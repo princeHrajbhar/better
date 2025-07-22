@@ -96,23 +96,3 @@ better/
 | About Us              | `/pages/aboutus.tsx`        |
 
 ---
-
-## ✍️ Contributing
-
-> All suggestions and improvements are welcome!
-
-### Steps to Contribute:
-
-1. 🍴 Fork the repository
-2. 👯 Clone your forked repo
-3. 📥 Create a new branch (`git checkout -b feature-name`)
-4. 🧑‍💻 Make your changes and commit (`git commit -m "feat: your message"`)
-5. 🚀 Push the branch (`git push origin feature-name`)
-6. 📩 Open a Pull Request
-
----
-
-## 📜 License
-
-This project is licensed under the **MIT License**.  
-© 2025 Better Home & Finance Holding Company.
