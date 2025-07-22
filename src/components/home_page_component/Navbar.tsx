@@ -30,7 +30,25 @@ const menuItems: MenuItem[] = [
     title: 'Better+',
     content: ['Insurance', 'Real Estate', 'Moving Services'],
   },
+  {
+    title: 'Resources',
+    content: ['About Us', 'Mortgage Welcome', 'Mortgage Calculator'],
+  },
 ];
+
+// Function to map content names to routes
+const getPath = (option: string): string => {
+  switch (option) {
+    case 'About Us':
+      return '/aboutus';
+    case 'Mortgage Welcome':
+      return '/mortgage-welcome';
+    case 'Mortgage Calculator':
+      return '/MortgageCalculator';
+    default:
+      return '#';
+  }
+};
 
 export default function Navbar() {
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
@@ -41,7 +59,6 @@ export default function Navbar() {
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
 
-  // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (activeMenu) {
@@ -58,7 +75,6 @@ export default function Navbar() {
     };
   }, [activeMenu]);
 
-  // Proper ref assignment without return value
   const setRef = (title: string) => (el: HTMLDivElement | null) => {
     menuRefs.current[title] = el;
   };
@@ -68,9 +84,11 @@ export default function Navbar() {
       clearTimeout(timeoutRef.current);
     }
     timeoutRef.current = setTimeout(() => {
-      if (menuRefs.current[title] &&
-          !menuRefs.current[title]?.contains(document.activeElement) &&
-          !menuRefs.current[title]?.matches(':hover')) {
+      if (
+        menuRefs.current[title] &&
+        !menuRefs.current[title]?.contains(document.activeElement) &&
+        !menuRefs.current[title]?.matches(':hover')
+      ) {
         setActiveMenu(null);
       }
     }, 100);
@@ -123,7 +141,7 @@ export default function Navbar() {
                     {item.content.map((option) => (
                       <a
                         key={option}
-                        href="#"
+                        href={getPath(option)}
                         className={styles.dropdownItem}
                         onMouseEnter={() => setHoveredOption(option)}
                         onMouseLeave={() => setHoveredOption(null)}
@@ -149,10 +167,10 @@ export default function Navbar() {
             <FaPhoneAlt />
           </div>
           <button className={styles.signIn}>Sign In</button>
-          <button 
-            className={styles.mobileMenuToggle} 
+          <button
+            className={styles.mobileMenuToggle}
             onClick={toggleMobileMenu}
-            aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+            aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
           >
             {isMobileMenuOpen ? <FaTimes /> : <FaBars />}
           </button>
@@ -160,13 +178,13 @@ export default function Navbar() {
       </nav>
 
       {/* Mobile Menu */}
-      <div 
+      <div
         ref={mobileMenuRef}
         className={`${styles.mobileMenu} ${isMobileMenuOpen ? styles.open : ''}`}
       >
         <div className={styles.mobileMenuHeader}>
           <div className={styles.logo}>MyCompany</div>
-          <button 
+          <button
             className={styles.mobileMenuClose}
             onClick={toggleMobileMenu}
             aria-label="Close menu"
@@ -174,14 +192,7 @@ export default function Navbar() {
             <FaTimes />
           </button>
         </div>
-        
-        {/* <div className={styles.mobileMenuMainButton} onClick={toggleMobileMenu}>
-          <div className={styles.mainMenuButton}>
-            <span>Main Menu</span>
-            <FaChevronDown className={styles.downArrow} />
-          </div>
-        </div> */}
-        
+
         <div className={styles.mobileMenuItems}>
           {menuItems.map((item) => (
             <div key={item.title} className={styles.mobileMenuItem}>
@@ -190,15 +201,19 @@ export default function Navbar() {
                 onClick={() => toggleMobileSubmenu(item.title)}
               >
                 <span>{item.title}</span>
-                <FaChevronDown className={`${styles.downArrow} ${expandedMobileMenu === item.title ? styles.rotated : ''}`} />
+                <FaChevronDown
+                  className={`${styles.downArrow} ${
+                    expandedMobileMenu === item.title ? styles.rotated : ''
+                  }`}
+                />
               </button>
-              
+
               {expandedMobileMenu === item.title && (
                 <div className={styles.mobileDropdown}>
                   {item.content.map((option) => (
                     <a
                       key={option}
-                      href="#"
+                      href={getPath(option)}
                       className={styles.mobileDropdownItem}
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
@@ -209,9 +224,9 @@ export default function Navbar() {
               )}
             </div>
           ))}
-          
+
           <div className={styles.mobileSignIn}>
-            <button 
+            <button
               className={styles.signIn}
               onClick={() => setIsMobileMenuOpen(false)}
             >
