@@ -1,0 +1,233 @@
+/* MonthlyBreakdown.module.scss */
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  padding: 100px 160px; /* Base padding for larger screens */
+  gap: 40px; /* Space between columns */
+  flex-wrap: wrap; /* Allow columns to wrap onto the next line */
+}
+
+.column {
+  flex: 1; /* Allows columns to grow and shrink */
+  max-width: 33.33%; /* Default max width for 3 columns */
+  min-width: 280px; /* Ensure columns don't get too small before wrapping */
+  /* This min-width, combined with flex-wrap on .container, makes them responsive */
+}
+
+.column h4 {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 8px;
+}
+
+.column h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
+.bars {
+  display: flex;
+  height: 40px;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.bar {
+  height: 100%;
+  position: relative;
+  transition: background-color 0.3s;
+  cursor: pointer;
+  border-radius: 10px;
+  margin-right: 2px;
+  /* Adjust individual bar radius for a continuous look if needed, but the current approach works */
+}
+
+.bar:last-child {
+  margin-right: 0;
+}
+
+.tooltip {
+  position: absolute;
+  /* Adjust top to be relative to the hovered bar, or use a transform */
+  top: -45px; /* Position above the bar */
+  left: 50%; /* Center horizontally */
+  transform: translateX(-50%); /* Adjust for true centering */
+  background: #fff;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 200px;
+  z-index: 10;
+  white-space: nowrap; /* Prevent text from wrapping inside the tooltip */
+  pointer-events: none; /* Allows clicks to pass through to elements behind the tooltip */
+}
+
+
+.tooltip h5 {
+  margin: 0 0 4px;
+  font-size: 14px;
+}
+
+.tooltip p {
+  margin: 0;
+  font-size: 12px;
+  color: #555;
+}
+
+.bulletList {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 16px;
+}
+
+.bulletRow {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+  font-size: 14px;
+  height: 30px;
+}
+
+.bullet {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 10px;
+  display: inline-block;
+}
+
+.copyButton {
+  padding: 8px 16px;
+  font-size: 14px;
+  background-color: #007aff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  width: 100%; /* Make button full width on smaller columns */
+  max-width: 200px; /* Constrain on larger screens if needed */
+}
+
+.inputRow {
+  margin-bottom: 12px;
+  height: 30px;
+}
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 110px;
+}
+
+.input {
+  height: 30px;
+  width: 100%;
+  padding-left: 20px;
+  padding-right: 32px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  text-align: center;
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+.inputDollar {
+  position: absolute;
+  left: 6px;
+  font-size: 12px;
+  color: #333;
+  pointer-events: none;
+}
+
+.incDec {
+  position: absolute;
+  right: 4px;
+  top: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.incDec button {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  line-height: 10px;
+  cursor: pointer;
+  font-size: 10px;
+}
+
+/* --- Media Queries --- */
+
+/* For screens smaller than 1200px (e.g., larger tablets, small desktops) */
+@media (max-width: 1200px) {
+  .container {
+    padding: 80px 80px; /* Reduce horizontal padding */
+    gap: 30px; /* Reduce gap between columns */
+  }
+
+  .column {
+    max-width: 48%; /* Allow two columns to fit per row */
+  }
+}
+
+/* For screens smaller than 768px (e.g., tablets and smaller) */
+@media (max-width: 768px) {
+  .container {
+    padding: 60px 20px; /* Further reduce padding for tablets */
+    flex-direction: column; /* Stack columns vertically */
+    gap: 40px; /* Maintain good spacing between stacked sections */
+  }
+
+  .column {
+    max-width: 100%; /* Columns take full width when stacked */
+    min-width: unset; /* Remove min-width to allow full flexibility */
+  }
+
+  .column h2 {
+    font-size: 22px; /* Slightly smaller heading on tablets */
+  }
+
+  .tooltip {
+    left: 0; /* Align tooltip to the left of the bar */
+    transform: none; /* Remove horizontal centering */
+    width: 180px; /* Adjust tooltip width */
+  }
+
+  .copyButton {
+    max-width: 100%; /* Ensure copy button is full width when column is full width */
+  }
+
+  .inputWrapper {
+    width: 100%; /* Make input wrappers full width on smaller screens */
+    max-width: 150px; /* Control max width to prevent too wide inputs if needed */
+  }
+}
+
+/* For screens smaller than 480px (e.g., mobile phones) */
+@media (max-width: 480px) {
+  .container {
+    padding: 40px 15px; /* Even smaller padding for mobile phones */
+    gap: 30px; /* Reduce gap */
+  }
+
+  .column h2 {
+    font-size: 20px; /* Smaller heading on mobile */
+  }
+
+  .tooltip {
+    top: -40px; /* Adjust tooltip position for smaller screens */
+    width: 160px; /* Smaller tooltip width */
+    font-size: 11px;
+  }
+
+  .tooltip h5 {
+    font-size: 13px;
+  }
+}

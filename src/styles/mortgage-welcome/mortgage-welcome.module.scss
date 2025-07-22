@@ -1,0 +1,296 @@
+/* mortgage-welcome.module.scss */
+.container {
+  max-width: 800px;
+  margin: auto;
+  padding: 100px 20px; /* Default padding for desktop/larger screens */
+  font-family: 'Segoe UI', sans-serif;
+  text-align: center;
+  color: #333;
+}
+
+.topBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px; /* Add space below top bar */
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.contact {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.phoneIcon {
+  color: #008000; /* Use a specific green for consistency */
+}
+
+.helpText {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+
+  a {
+    color: #008000; /* Use a specific green for consistency */
+    text-decoration: none;
+    font-weight: 500;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.centerLineContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px 0 30px;
+  gap: 16px;
+  width: 100%;
+}
+
+.separatorLine {
+  flex: 1;
+  height: 3px;
+  background-color: #ddd;
+  border: none;
+}
+
+.iconCircle {
+  background-color: #008000; /* Use a specific green */
+  border-radius: 50%;
+  padding: 16px;
+  box-shadow: 0 4px 10px rgba(0, 128, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+
+.greeting {
+  font-size: 32px; /* Increased font size for impact */
+  font-weight: 700;
+  margin-bottom: 30px;
+  line-height: 1.2;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center; /* Centers buttons horizontally */
+  margin-bottom: 40px;
+}
+
+.optionButton {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 24px; /* Slightly larger padding */
+  border: 2px solid #008000; /* Use specific green */
+  border-radius: 8px;
+  background: #fff;
+  color: #333;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out; /* Smoother transition */
+  width: 300px; /* Fixed width for better consistency */
+  max-width: 90%; /* Max width for responsiveness */
+  justify-content: flex-start;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+
+  &:hover {
+    background-color: #e6ffe6; /* Lighter green on hover */
+    transform: translateY(-2px); /* Slight lift effect */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.buttonIcon {
+  color: #008000; /* Use specific green */
+}
+
+.stats {
+  display: flex;
+  justify-content: space-around;
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 40px;
+  flex-wrap: wrap; /* Allow stats to wrap on smaller screens */
+  gap: 20px; /* Gap between stat items */
+
+  div {
+    max-width: 200px;
+    text-align: center;
+    padding: 10px; /* Add some padding for better spacing */
+  }
+
+  strong {
+    font-size: 24px; /* Make the numbers stand out */
+    color: #1a1a1a;
+  }
+}
+
+.unlockSection {
+  display: flex;
+  justify-content: center;
+  padding: 40px 0; /* More padding for this section */
+  background-color: #f0f0f0;
+}
+
+.unlockCard {
+  background-color: white;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15); /* More prominent shadow */
+  max-width: 600px;
+  width: 90%; /* Use percentage for responsiveness */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: auto; /* Auto height to accommodate content */
+  text-align: left;
+}
+
+.unlockHeading {
+  font-size: 20px; /* Slightly larger heading */
+  font-weight: 600;
+  margin-bottom: 20px; /* More space below heading */
+  color: #1a1a1a;
+}
+
+.unlockItem {
+  display: flex;
+  align-items: flex-start; /* Align items to start for multi-line text */
+  gap: 12px;
+  font-size: 16px;
+  margin-bottom: 12px;
+  color: #333;
+  line-height: 1.4; /* Better readability */
+}
+
+.unlockIcon {
+  color: #008000; /* Use specific green */
+  flex-shrink: 0; /* Prevent icon from shrinking */
+  margin-top: 2px; /* Small adjustment for vertical alignment with text */
+}
+
+/* --- Responsive Adjustments --- */
+
+/* For screens smaller than 768px (e.g., tablets and large phones) */
+@media (max-width: 768px) {
+  .container {
+    padding: 60px 15px; /* Reduce overall padding */
+  }
+
+  .topBar {
+    flex-direction: column; /* Stack logo and contact vertically */
+    gap: 15px;
+    margin-bottom: 30px;
+  }
+
+  .greeting {
+    font-size: 28px; /* Adjust greeting size */
+    margin-bottom: 25px;
+  }
+
+  .optionButton {
+    width: 90%; /* Buttons take up more width */
+    max-width: 320px; /* Limit max width for very large phones */
+    padding: 12px 20px;
+    font-size: 15px;
+  }
+
+  .stats {
+    flex-direction: column; /* Stack stats vertically */
+    gap: 25px;
+    margin-bottom: 30px;
+  }
+
+  .stats div {
+    max-width: 100%; /* Allow stat divs to take full width */
+  }
+
+  .unlockSection {
+    padding: 30px 0; /* Reduce padding for unlock section */
+  }
+
+  .unlockCard {
+    padding: 30px; /* Reduce card padding */
+    width: 95%; /* Make card slightly wider */
+  }
+
+  .unlockHeading {
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
+
+  .unlockItem {
+    font-size: 15px;
+    margin-bottom: 10px;
+  }
+}
+
+/* For screens smaller than 480px (e.g., mobile phones) */
+@media (max-width: 480px) {
+  .container {
+    padding: 40px 10px; /* Even less overall padding */
+  }
+
+  .topBar {
+    gap: 10px;
+    margin-bottom: 25px;
+  }
+
+  .logo {
+    font-size: 20px;
+  }
+
+  .helpText {
+    font-size: 13px;
+  }
+
+  .iconCircle {
+    padding: 12px; /* Smaller icon circle */
+  }
+
+  .greeting {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  .optionButton {
+    padding: 10px 15px;
+    font-size: 14px;
+    width: 100%; /* Take full width on small screens */
+    max-width: 280px; /* Ensure it doesn't get too wide if device is larger than 280px */
+  }
+
+  .stats {
+    font-size: 14px;
+    gap: 20px;
+  }
+
+  .stats strong {
+    font-size: 20px;
+  }
+
+  .unlockCard {
+    padding: 25px;
+  }
+
+  .unlockHeading {
+    font-size: 16px;
+  }
+
+  .unlockItem {
+    font-size: 14px;
+  }
+}

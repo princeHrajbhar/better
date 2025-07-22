@@ -1,6 +1,6 @@
-// components/FooterSection.tsx
+// components/BetterOverview.tsx (assuming it's named BetterOverview.tsx as per the warning)
 import React from 'react';
-import styles from '@/styles/home_styles/BetterOverview.module.scss'; // Ensure this path is correct if it's not components/FooterSection.module.scss
+import styles from '@/styles/home_styles/BetterOverview.module.scss'; // Confirm this path is correct
 
 interface ColumnData {
   title: string;
@@ -73,7 +73,7 @@ const columns: ColumnData[] = [
   },
 ];
 
-const FooterSection: React.FC = () => {
+const BetterOverview: React.FC = () => { // Renamed to BetterOverview as per the warning's context
   // Function to render the "Better X:" heading with "Better" word styled
   const renderPartiallyStyledHeading = (text: string) => {
     // Regex to capture "Better" and the rest of the heading (e.g., " Mortgage:")
@@ -95,7 +95,7 @@ const FooterSection: React.FC = () => {
   return (
     <div className={styles.footerContainer}>
       <div className={styles.columnsWrapper}>
-        {columns.map((column, colIndex) => (
+        {columns.map((column) => ( // colIndex removed
           <div key={column.title} className={styles.footerColumn}>
             {/* Conditional rendering for column titles: hide "Small Description" */}
             {column.title !== 'Small Description' && (
@@ -164,4 +164,4 @@ const FooterSection: React.FC = () => {
   );
 };
 
-export default FooterSection;
+export default BetterOverview; // Exporting as BetterOverview

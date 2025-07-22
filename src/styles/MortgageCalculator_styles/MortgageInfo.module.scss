@@ -1,0 +1,361 @@
+// MortgageInfo.module.scss
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 40px 20px; /* Default padding for desktop */
+  text-align: left;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  line-height: 1.6;
+}
+
+.separator {
+  border: none;
+  border-bottom: 1px solid #e0e0e0;
+  margin: 50px 0; /* Consistent margin for separators */
+}
+
+.heading {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #1a1a1a;
+  line-height: 1.3;
+}
+
+.subheading {
+  font-size: 26px;
+  font-weight: 600;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  color: #2c3e50;
+  line-height: 1.3;
+}
+
+.subsubheading {
+  font-size: 22px;
+  font-weight: 600;
+  margin-top: 30px;
+  margin-bottom: 15px;
+  color: #34495e;
+}
+
+.description {
+  font-size: 18px;
+  color: #555;
+  margin-bottom: 20px;
+  line-height: 1.7;
+}
+
+.formulaTitle {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 30px 0 15px;
+  color: #2c3e50;
+}
+
+.formulaImage {
+  margin: 20px 0;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  padding: 25px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.formulaPlaceholder {
+  background-color: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+}
+
+.formulaContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.formulaText {
+  font-size: 28px;
+  font-weight: 600;
+  color: #2c3e50;
+  text-align: center;
+  margin-bottom: 20px;
+  white-space: nowrap; /* Prevent formula parts from wrapping too early */
+}
+
+.formulaFraction {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px 0;
+  width: fit-content; /* Ensure fraction width adapts to content */
+}
+
+.formulaDivider {
+  width: 100%;
+  height: 2px;
+  background-color: #2c3e50;
+  margin: 5px 0;
+}
+
+.formulaLegend {
+  background-color: #f1f8ff;
+  border-left: 4px solid #4a90e2;
+  padding: 15px;
+  border-radius: 4px;
+  margin-top: 20px;
+  font-size: 16px;
+  line-height: 1.6;
+  text-align: left; /* Ensure legend text is left-aligned */
+  width: 100%; /* Take full width of parent */
+  box-sizing: border-box; /* Include padding in width */
+}
+
+.imageCaption {
+  text-align: center;
+  font-size: 14px;
+  color: #777;
+  font-style: italic;
+  margin-top: -10px;
+  margin-bottom: 30px;
+}
+
+.propertyTaxTable {
+  margin: 30px 0;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  overflow-x: auto; /* Enable horizontal scrolling for table on small screens */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.tableHeader, .tableRow {
+  display: flex;
+  min-width: 600px; /* Ensure table doesn't collapse too much */
+}
+
+.tableHeader {
+  background-color: #2ecc71;
+  color: white;
+  font-weight: 600;
+}
+
+.headerCell {
+  flex: 1;
+  padding: 15px;
+  text-align: center;
+  border-right: 1px solid rgba(255, 255, 255, 0.3);
+  &:last-child {
+    border-right: none;
+  }
+}
+
+.tableRow {
+  border-bottom: 1px solid #e0e0e0;
+  &:nth-child(odd) {
+    background-color: #f8f9fa;
+  }
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.rowCell {
+  flex: 1;
+  padding: 12px 15px;
+  text-align: center;
+  border-right: 1px solid #e0e0e0;
+  &:last-child {
+    border-right: none;
+  }
+}
+
+.resourceList {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0 40px;
+
+  li {
+    margin-bottom: 12px;
+    position: relative;
+    padding-left: 25px; /* Space for the custom bullet */
+
+    &::before {
+      content: "•";
+      color: #2ecc71;
+      font-size: 24px;
+      position: absolute;
+      left: 0;
+      top: -3px;
+    }
+
+    a {
+      color: #3498db;
+      text-decoration: none;
+      font-size: 18px;
+      transition: color 0.3s;
+
+      &:hover {
+        color: #2980b9;
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .container {
+    padding: 30px 15px; /* More padding on smaller screens */
+  }
+
+  .separator {
+    margin: 40px 0; /* Adjust separator margin */
+  }
+
+  .heading {
+    font-size: 28px;
+  }
+
+  .subheading {
+    font-size: 22px;
+    margin-top: 30px;
+    margin-bottom: 15px;
+  }
+
+  .subsubheading {
+    font-size: 20px;
+    margin-top: 25px;
+    margin-bottom: 10px;
+  }
+
+  .description {
+    font-size: 16px;
+    margin-bottom: 15px;
+  }
+
+  .formulaTitle {
+    font-size: 18px;
+    margin: 25px 0 10px;
+  }
+
+  .formulaPlaceholder {
+    min-height: 150px; /* Smaller min-height for formula box */
+    padding: 20px;
+  }
+
+  .formulaText {
+    font-size: 24px; /* Adjust formula text size */
+  }
+
+  .formulaLegend {
+    font-size: 14px;
+    padding: 12px;
+  }
+
+  .propertyTaxTable {
+    margin: 20px 0;
+    /* overflow-x: auto; remains on this breakpoint to allow horizontal scroll */
+  }
+
+  .tableHeader, .tableRow {
+    min-width: unset; /* Allow table rows to shrink and overflow */
+    display: table-row; /* Change to table-row for better stacking */
+  }
+
+  .headerCell, .rowCell {
+    display: table-cell; /* Change to table-cell */
+    width: 50%; /* Each cell takes half width */
+    text-align: left;
+    border-right: 1px solid #e0e0e0;
+    border-bottom: 1px solid #e0e0e0; /* Add bottom border for stacked cells */
+    &:nth-child(even) { /* Target even cells */
+      border-right: none; /* No right border on even cells */
+    }
+    &:last-child {
+      border-bottom: none; /* No bottom border on last cell of row */
+    }
+  }
+
+  .headerCell {
+    background-color: #2ecc71; /* Keep header cell background */
+    color: white;
+  }
+
+  .rowCell {
+    &:nth-child(odd) {
+      background-color: #f8f9fa; /* Zebra striping for rows */
+    }
+  }
+
+  .resourceList li a {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 20px 10px; /* Further reduced padding for very small screens */
+  }
+
+  .separator {
+    margin: 30px 0;
+  }
+
+  .heading {
+    font-size: 24px;
+  }
+
+  .subheading {
+    font-size: 20px;
+  }
+
+  .subsubheading {
+    font-size: 18px;
+  }
+
+  .description {
+    font-size: 15px;
+  }
+
+  .formulaPlaceholder {
+    padding: 15px;
+    min-height: 120px;
+  }
+
+  .formulaText {
+    font-size: 20px;
+  }
+
+  .formulaLegend {
+    font-size: 13px;
+  }
+
+  .headerCell, .rowCell {
+    width: 100%; /* Each cell takes full width on single column layout */
+    display: block; /* Make cells block level for true stacking */
+    border-right: none !important; /* Remove all right borders */
+    border-bottom: 1px solid #e0e0e0; /* Keep bottom border */
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  .tableRow {
+    flex-direction: column; /* Stack cells vertically within a row */
+    border-bottom: 1px solid #e0e0e0; /* Keep row separator */
+  }
+  .tableRow:last-child {
+    border-bottom: none;
+  }
+
+  .resourceList li a {
+    font-size: 15px;
+  }
+}

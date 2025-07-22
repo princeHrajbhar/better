@@ -1,7 +1,7 @@
 // components/HomeLandingPage.tsx
 import Image from 'next/image';
 import styles from '@/styles/home_styles/HeroSection.module.scss';
-import { FaClock, FaCheckCircle } from 'react-icons/fa';
+import { FaClock } from 'react-icons/fa';
 
 export default function HomeLandingPage() {
   return (
@@ -17,8 +17,8 @@ export default function HomeLandingPage() {
           
           {/* Main Heading - Now all on one line */}
           <h1 className={styles.heading}>
-            <span className={styles.whiteText}>AI-powered</span>
-            <span className={styles.gradientText}> Mortgage</span>
+            <span className={styles.gradientText}>AI-powered</span>
+            <span className={styles.whiteText}> Mortgage</span>
           </h1>
           
           {/* Description */}

@@ -5,7 +5,8 @@
   width: 100%;
   overflow: hidden;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: flex-end; /* Pushes the entire .content to the bottom */
   align-items: center;
 }
 
@@ -23,19 +24,20 @@
   position: relative;
   z-index: 10;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column; /* Stacks text and image vertically */
+  align-items: center; /* Centers items horizontally within content */
+  justify-content: flex-start; /* Ensures text content starts from the top within 'content' */
   width: 100%;
-  padding: 0rem;
   max-width: 1200px;
   margin: 0 auto;
+  padding: 0 20px; /* Default horizontal padding */
+  flex-grow: 1; /* Allows content to take up available space */
 }
 
 .textContainer {
   text-align: center;
   width: 100%;
-  padding-top: 10rem;
+  padding-top: 10rem; /* Default padding for larger screens */
 }
 
 .subtitle {
@@ -89,7 +91,7 @@
   transition: all 0.3s ease;
   margin-bottom: 0rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  
+
   &:hover {
     background-color: #16a34a;
     transform: translateY(-2px);
@@ -98,10 +100,10 @@
 }
 
 .infoContainer {
-  margin-top: 0.25rem; /* Reduced gap below the button */
+  margin-top: 0.75rem;
   display: flex;
   justify-content: center;
-  margin-bottom: 4rem;
+  margin-bottom: 2rem;
 }
 
 .infoItem {
@@ -109,28 +111,29 @@
   align-items: center;
   gap: 0.3rem;
   font-size: 0.85rem;
-  color: #d1d5db; // Optional: Use #fff if you want white
+  color: #d1d5db;
 }
 
 .icon {
   font-size: 0.95rem;
-  color: #22c55e; // Tailwind green-500
+  color: #22c55e;
 }
 
 .imageWrapper {
-  width: 50%;       // Half of the container/screen
-  height: auto;     // Let image height flow naturally
-  margin: 0 auto;   // Center horizontally
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  margin: auto auto 0; /* Pushes image to the bottom, centers horizontally */
   position: relative;
-  overflow: visible;
+  overflow: hidden;
 }
 
 .image {
-  width: 100%;      // Fill the wrapper's width
-  height: auto;     // Maintain natural image height
+  width: 100%;
+  height: auto;
   display: block;
+  object-fit: contain;
 }
-
 
 .decorCircle1 {
   position: absolute;
@@ -168,63 +171,114 @@
   z-index: 1;
 }
 
-/* Responsive adjustments */
+/* --- Media Queries --- */
+
 @media (max-width: 1200px) {
-  .subtitle, .heading {
+  .subtitle,
+  .heading {
     font-size: 4rem;
   }
 }
 
 @media (max-width: 992px) {
-  .subtitle, .heading {
+  .subtitle,
+  .heading {
     font-size: 3.5rem;
   }
   
   .description {
     font-size: 1.15rem;
   }
+  
+  .textContainer {
+    padding-top: 8rem;
+  }
+  
+  .imageWrapper {
+    max-width: 500px;
+  }
 }
 
 @media (max-width: 768px) {
-  .subtitle, .heading {
+  .textContainer {
+    padding-top: 6rem; /* Default for this breakpoint, will be overridden for smaller */
+  }
+
+  .subtitle,
+  .heading {
     font-size: 2.8rem;
     flex-direction: column;
   }
-  
+
   .whiteText {
     margin-right: 0;
     margin-bottom: 0.5rem;
   }
-  
+
   .description {
     font-size: 1.1rem;
+    padding: 0 10px;
   }
-  
+
   .infoContainer {
     flex-direction: column;
     gap: 0.8rem;
-    padding: 1rem;
-    border-radius: 12px;
-    width: 100%;
-    max-width: 300px;
+    padding: 0 10px;
+    max-width: 100%;
   }
-  
-  .divider {
-    display: none;
+
+  .imageWrapper {
+    max-width: 400px;
+  }
+
+  .decorCircle1 {
+    width: 150px;
+    height: 150px;
+    top: 10%;
+    left: 5%;
+  }
+
+  .decorCircle2 {
+    width: 200px;
+    height: 200px;
+    bottom: 10%;
+    right: 5%;
+  }
+
+  .decorCircle3 {
+    width: 100px;
+    height: 100px;
+    top: 30%;
+    right: 5%;
   }
 }
 
 @media (max-width: 576px) {
-  .subtitle, .heading {
+  .textContainer {
+    padding-top: 200px; /* Forces 100px padding from the top on small mobile screens */
+  }
+
+  .subtitle,
+  .heading {
     font-size: 2.2rem;
   }
-  
+
   .description {
     font-size: 1rem;
   }
-  
+
   .approvalButton {
     font-size: 1.1rem;
     padding: 0.9rem 2rem;
+  }
+
+  .imageWrapper {
+    max-width: 350px;
+  }
+
+  .decorCircle1,
+  .decorCircle2,
+  .decorCircle3 {
+    filter: blur(30px);
   }
 }

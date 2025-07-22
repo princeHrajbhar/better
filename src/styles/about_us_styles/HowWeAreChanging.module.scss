@@ -1,0 +1,23 @@
+.container {
+  background-color: #014421; // Dark green background
+  color: white;
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.heading {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  max-width: 800px;
+  margin: 0 auto 20px auto;
+  text-align: left; // Align heading text to the left
+}
+
+.paragraph {
+  font-size: 0.85rem; // Very small size
+  line-height: 1.6;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: left; // Align paragraph text to the left
+}

@@ -1,0 +1,86 @@
+/* styles/about_us_styles/BackedBy.module.scss */
+.container {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.heading {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #007a4d;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.logosRow {
+  display: flex;
+  flex-wrap: wrap; /* Allows logos to wrap on smaller screens */
+  justify-content: center;
+  gap: 32px; /* Gap between logos */
+}
+
+.logoWrapper {
+  width: 140px;
+  height: 80px;
+  display: flex; /* For centering the Image component if it doesn't fill entirely */
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  position: relative; /* Crucial for Next.js Image with fill */
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+.logoImage {
+  /* When using fill, these are handled by the Image component's props and object-fit style */
+  /* Remove width: 100%; height: 100%; object-fit: contain; from here */
+  /* The style prop in the Image component handles object-fit */
+}
+
+/* --- Media Queries for Responsiveness --- */
+
+/* For screens smaller than 768px (e.g., tablets and large phones) */
+@media (max-width: 768px) {
+  .container {
+    padding: 40px 15px; /* Adjust padding for smaller screens */
+  }
+
+  .heading {
+    font-size: 1.6rem;
+    margin-bottom: 30px;
+  }
+
+  .logosRow {
+    gap: 20px; /* Slightly reduced gap */
+  }
+
+  .logoWrapper {
+    width: 120px; /* Slightly smaller logo size */
+    height: 70px;
+    padding: 8px;
+  }
+}
+
+/* For screens smaller than 480px (e.g., mobile phones) */
+@media (max-width: 480px) {
+  .logosRow {
+    flex-direction: column; /* Stack logos vertically */
+    align-items: center; /* Center them horizontally when stacked */
+    gap: 15px; /* Adjust gap for vertical stacking */
+  }
+
+  .logoWrapper {
+    width: 80%; /* Make logo wrappers wider to utilize space */
+    max-width: 200px; /* Prevent them from getting too wide */
+    height: 90px; /* Adjust height for a better vertical appearance */
+    padding: 15px; /* More padding when stacked */
+  }
+
+  .heading {
+    font-size: 1.4rem;
+  }
+}

@@ -1,0 +1,304 @@
+/* CompanyTimeline.module.scss */
+
+.timelineContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px; /* Add horizontal padding for smaller screens */
+  font-family: Arial, sans-serif;
+  padding-bottom: 120px;
+}
+
+.heading {
+  text-align: center;
+  margin-bottom: 50px;
+  font-size: 2.5rem;
+  color: #333;
+}
+
+.timeline {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  // Central vertical line for desktop
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%; /* Remains central for desktop */
+    width: 1px;
+    background-color: #ccc;
+    transform: translateX(-50%);
+    z-index: 0;
+  }
+}
+
+.timelineItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center marker horizontally */
+  width: 100%;
+  position: relative;
+  margin-bottom: 10px;
+  min-height: 250px; /* Provides space for content */
+}
+
+.marker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 1;
+}
+
+.yearBubble {
+  background-color: #2ecc71;
+  color: white;
+  width: 80px;
+  height: 40px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 1.1rem;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+}
+
+.verticalLine {
+  width: 1px;
+  background-color: #ccc;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  transition: height 0.3s ease;
+}
+
+.content {
+  position: absolute; /* Desktop positioning */
+  top: 0;
+  width: 300px; /* Fixed width for desktop content boxes */
+  padding-top: 80px; /* Space for the year bubble above */
+  z-index: 2;
+}
+
+.left {
+  right: calc(50% + 30px); /* Position left of the central line */
+  text-align: right; /* Align text right for left-sided content */
+}
+
+.right {
+  left: calc(50% + 30px); /* Position right of the central line */
+  text-align: left; /* Align text left for right-sided content */
+}
+
+.contentBox {
+  background-color: #c1bbbb;
+  border-radius: 8px; /* Added border-radius for consistency */
+  padding: 15px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  /* text-align will be inherited from .left/.right or overridden in media queries */
+  min-height: 60px;
+
+  // Connector lines
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 20px;
+    height: 1px;
+    background: #ccc;
+    transform: translateY(-50%);
+  }
+}
+
+// Left card connector
+.left .contentBox::after {
+  right: -20px;
+}
+
+// Right card connector
+.right .contentBox::after {
+  left: -20px;
+}
+
+.getStartedButton {
+  background-color: #2ecc71;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin-top: 15px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s;
+  display: inline-block; /* Changed to inline-block to allow text-align to work */
+  /* Remove width: 100% here as it would break alignment */
+}
+
+.getStartedButton:hover {
+  background-color: #27ae60;
+}
+
+/* --- Media Queries --- */
+
+/* For screens smaller than 992px (e.g., larger tablets) */
+@media (max-width: 992px) {
+  .timelineContainer {
+    padding: 30px 15px; /* Adjust container padding */
+  }
+
+  .heading {
+    font-size: 2rem; /* Slightly smaller heading */
+    margin-bottom: 40px;
+  }
+
+  .timelineItem {
+    min-height: 200px; /* Adjust minimum height for items */
+  }
+
+  .content {
+    width: 280px; /* Slightly smaller content box width */
+    padding-top: 70px; /* Adjust padding for content */
+  }
+
+  /* Adjust positioning for slightly narrower screens */
+  .left {
+    right: calc(50% + 20px);
+  }
+
+  .right {
+    left: calc(50% + 20px);
+  }
+}
+
+/* For screens smaller than 768px (e.g., tablets and mobile) */
+@media (max-width: 768px) {
+  .timeline {
+    /* Main vertical line shifts to the left */
+    &::before {
+      left: 30px; /* Position the line closer to the left edge */
+      transform: translateX(0); /* Remove transform as it's no longer centered */
+    }
+  }
+
+  .timelineItem {
+    flex-direction: row; /* Marker and content side-by-side */
+    justify-content: flex-start; /* Align items to the start */
+    align-items: flex-start; /* Align items to the top */
+    min-height: auto; /* Remove fixed min-height when stacked horizontally */
+    margin-bottom: 40px; /* More space between stacked items */
+  }
+
+  .marker {
+    position: absolute; /* Position marker absolutely relative to timelineItem */
+    left: 0;
+    top: 0;
+    align-items: flex-start; /* Align marker elements to the start */
+    transform: translateX(0); /* Ensure no horizontal shift */
+  }
+
+  .yearBubble {
+    position: relative; /* Remove absolute positioning from here */
+    left: 0;
+    transform: translateX(0);
+    margin-left: -10px; /* Pull it slightly to the left of the main line */
+  }
+
+  .verticalLine {
+    height: 100% !important; /* Make vertical line full height for mobile */
+    position: absolute;
+    left: 30px; /* Align with the main timeline line */
+    top: 0;
+    height: 100%;
+    /* Override inline style by making it important, or adjust JS logic */
+  }
+
+  .content {
+    position: relative; /* Switch to relative positioning */
+    top: auto;
+    left: auto;
+    right: auto;
+    width: calc(100% - 70px); /* Adjust width to account for marker */
+    margin-left: 70px; /* Push content to the right of the marker/line */
+    padding-top: 0; /* Remove top padding as marker is now beside it */
+    text-align: left; /* Ensure text is left-aligned */
+  }
+
+  .left,
+  .right {
+    text-align: left; /* Force left alignment for all content boxes */
+    left: auto;
+    right: auto;
+  }
+
+  .contentBox {
+    margin-left: 0; /* No margin on content box itself */
+    width: 100%; /* Take full width of its parent (.content) */
+
+    /* Adjust connector line for mobile - always point left */
+    &::after {
+      left: -20px; /* Connector points left towards the timeline line */
+      right: auto; /* Remove right property */
+      top: 20px; /* Adjust vertical position */
+    }
+  }
+
+  .getStartedButton {
+    display: block; /* Make button a block element */
+    margin: 15px auto 0; /* Center button if needed within its content box */
+    max-width: 200px; /* Constrain button width */
+  }
+}
+
+/* For screens smaller than 480px (e.g., mobile phones) */
+@media (max-width: 480px) {
+  .timelineContainer {
+    padding: 20px 10px;
+    padding-bottom: 80px;
+  }
+
+  .heading {
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+  }
+
+  .timeline {
+    &::before {
+      left: 20px; /* Further shift the line for very small screens */
+    }
+  }
+
+  .marker {
+    left: -10px; /* Adjust marker position for smaller screens */
+  }
+
+  .yearBubble {
+    width: 70px; /* Smaller year bubble */
+    height: 35px;
+    font-size: 1rem;
+    margin-left: 0px;
+  }
+
+  .verticalLine {
+    left: 20px; /* Align vertical line with the main timeline line */
+  }
+
+  .content {
+    width: calc(100% - 60px); /* Adjust content width */
+    margin-left: 60px; /* Adjust margin */
+  }
+
+  .contentBox {
+    font-size: 0.9rem;
+    padding: 12px;
+  }
+
+  .contentBox::after {
+    left: -15px; /* Adjust connector line position */
+    width: 15px; /* Shorter connector */
+  }
+}
